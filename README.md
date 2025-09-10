@@ -1,7 +1,7 @@
 
 # 📱 [Flutter-Expense-Track]
 
-> Dice demo application, for educational purposes.
+> Flutter Expense Track demo application, for educational purposes.
 
 ## 📋 Description
 
