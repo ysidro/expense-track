@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_track/models/expense.dart';
-
+import 'dart:io';
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
 
@@ -39,7 +39,7 @@ class _NewExpensesState extends State<NewExpense> {
   }
 
   void _showDialog(){
-    if(Theme.of(context).platform == TargetPlatform.iOS){
+    if(Platform.isIOS){
       showCupertinoDialog(
         context: context, 
         builder: (ctx) => CupertinoAlertDialog(
