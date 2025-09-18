@@ -9,10 +9,7 @@ class Expenses extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _ExpensesState();
   }
-
 }
-
-
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
       Expense(
@@ -29,6 +26,7 @@ class _ExpensesState extends State<Expenses> {
 
   void _openAddExpensesOverlay(){
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context, 
       builder: (ctx) => NewExpense(onAddExpense: _addExpense)
@@ -66,6 +64,7 @@ class _ExpensesState extends State<Expenses> {
   }
   @override
   Widget build(BuildContext context) {
+  final width =  MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text('Personal Expense Tracker'),
@@ -75,9 +74,18 @@ class _ExpensesState extends State<Expenses> {
           )          
         ],
       ),
-      body: Column(
+      body: width < 600  ? Column(
         children: [
           Chart(expenses: _registeredExpenses),
+          Expanded(child: ExpensesList(
+            expenses: _registeredExpenses, 
+            onRemoveExpense: _removeExpense,)),
+        ],
+      ) : Row(
+        children: [
+          Expanded(
+            child: Chart(expenses: _registeredExpenses)
+            ),
           Expanded(child: ExpensesList(
             expenses: _registeredExpenses, 
             onRemoveExpense: _removeExpense,)),
